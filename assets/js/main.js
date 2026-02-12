@@ -211,6 +211,22 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // ---- Dynamic Years in Business ----
+  const FOUNDED_YEAR = 1948;
+  const currentYear = new Date().getFullYear();
+  const yearsInBusiness = currentYear - FOUNDED_YEAR;
+
+  // Populate all static .years-count spans
+  document.querySelectorAll('.years-count').forEach(el => {
+    el.textContent = yearsInBusiness;
+  });
+
+  // Set data-count on the animated heritage stat so the counter works dynamically
+  const yearsCountStat = document.querySelector('.years-count-stat');
+  if (yearsCountStat) {
+    yearsCountStat.setAttribute('data-count', yearsInBusiness);
+  }
+
   // ---- Counter Animation for Stats ----
   const counters = document.querySelectorAll('[data-count]');
 
@@ -274,7 +290,6 @@ document.addEventListener('DOMContentLoaded', () => {
   // ---- Year Copyright Auto Update ----
   const yearEl = document.querySelector('.footer__copy');
   if (yearEl) {
-    const currentYear = new Date().getFullYear();
     yearEl.innerHTML = yearEl.innerHTML.replace('2026', currentYear);
   }
 });
